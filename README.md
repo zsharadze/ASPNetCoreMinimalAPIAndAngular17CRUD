@@ -18,6 +18,7 @@ This is ASP.Net Core 5 Web Api and Angular crud example.
 5. Run Angular project with ng serve -o and you are done.
 
 ![screenshot](https://github.com/zsharadze/ASPNetCoreMinimalAPIAndAngular17CRUD/blob/master/Capture1.png?raw=true)
+
 ![screenshot](https://github.com/zsharadze/ASPNetCoreMinimalAPIAndAngular17CRUD/blob/master/Capture2.png?raw=true)
 
 ###### About me
