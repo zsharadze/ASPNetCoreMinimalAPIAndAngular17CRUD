@@ -1,0 +1,19 @@
+.rowGrayBg {
+    background-color: rgb(222, 226, 224);
+}
+
+.table{
+    margin-top: 10px;
+}
+
+.table thead th  {
+    font-weight: normal;
+  }
+
+.tableThead{
+    background-color: rgb(13, 110, 253);
+    height: 50px;
+    vertical-align: middle;
+    font-weight: normal !important;
+    color:white
+}

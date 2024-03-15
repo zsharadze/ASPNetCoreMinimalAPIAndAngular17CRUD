@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNetCoreMinimalAPI", "ASPNetCoreMinimalAPI\ASPNetCoreMinimalAPI.csproj", "{35F5CD6F-7C76-4A14-BF34-95B921CACE14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35F5CD6F-7C76-4A14-BF34-95B921CACE14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F5CD6F-7C76-4A14-BF34-95B921CACE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F5CD6F-7C76-4A14-BF34-95B921CACE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F5CD6F-7C76-4A14-BF34-95B921CACE14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCD4BDA7-83E4-4DD6-8BA4-02671C8C689C}
+	EndGlobalSection
+EndGlobal

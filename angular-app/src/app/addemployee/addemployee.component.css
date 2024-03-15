@@ -1,0 +1,21 @@
+  input.ng-touched.ng-invalid {
+    border: 1px solid red;
+  }
+
+  .addEmployeeInput{
+    width: 280px;
+    display: inline-block;
+  }
+/*remove up down arrows on number input*/
+  input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.addCancelBtns{
+  width: 70px;
+  margin-top: 1px;
+}

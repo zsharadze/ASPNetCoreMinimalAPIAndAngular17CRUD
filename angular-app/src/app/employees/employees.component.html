@@ -1,0 +1,48 @@
+<div style="padding: 25px;width: 40%;">
+    <table class="w-100">
+        <tr>
+            <td>
+                <p class="h5 float-start pt-2">Employees:</p>
+            </td>
+            <td>
+            <input type="search" placeholder="Type to search..." class="form-control" [(ngModel)]='searchText' (ngModelChange)='fullNameModelChanged.next($event)'>             
+            </td>
+            <td class="pl-1">
+                <a><i class="fa fa-search"></i></a>
+            </td>
+            <td><button class="btn btn-primary float-end" [routerLink]="['addemployee']">Add New Employee</button></td>
+        </tr>
+    </table>
+    <table class="table">
+        <thead class="tableThead">
+            <th scope="col" style="padding-left: 10px;">Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th style="width: 40px;"></th>
+            <th style="width: 40px;"></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees; let odd=odd;" [class.rowGrayBg]="odd">
+                <td style="padding-left: 10px;">
+                    {{employee.id}}
+                </td>
+                <td>
+                    {{employee.fullName}}
+                </td>
+                <td>
+                    {{employee.email}}
+                </td>
+                <td>
+                    {{employee.age}}
+                </td>
+                <td>
+                    <a (click)="editEmployee(employee.id)"><i class="fa fa-edit" style="cursor: pointer;"></i></a>
+                </td>
+                <td>
+                    <a (click)="deleteEmployee(employee.id)"><i class="fa fa-trash"  style="cursor: pointer;"></i></a>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+</div>
