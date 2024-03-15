@@ -4,9 +4,10 @@ This is CRUD example with ASP.Net Core 8 Minimal Api and Angular 17.
 ## Features
 1. Add/Edit/Delete/Select employee entities.
 2. Search with debounceTime.
-3. Input Validation with Fluent Validation.
-4. Entity Framework Core usage.
-5. MS SQL Server as database.
+3. Functional interceptor and global loading overlay.
+4. Input Validation with Fluent Validation.
+5. Entity Framework Core usage.
+6. MS SQL Server as database.
 
 ## Getting Started
 1. Go to ASPNetCoreMinimalAPI and open ASPNetCoreMinimalAPI.sln in Visual Studio.
