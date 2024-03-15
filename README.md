@@ -1,5 +1,5 @@
 # ASP.Net Core 8 Minimal API and AndAngular 17 CRUD example
-This is ASP.Net Core 5 Web Api and Angular crud example.
+This is CRUD example with ASP.Net Core 8 Minimal Api and Angular 17.
 
 ## Features
 1. Add/Edit/Delete/Select employee entities.
