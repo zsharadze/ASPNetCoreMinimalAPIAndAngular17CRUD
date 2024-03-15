@@ -1,4 +1,4 @@
-# ASP.Net Core 8 Minimal API and AndAngular 17 CRUD example
+# ASP.Net Core 8 Minimal API and Angular 17 CRUD example
 This is CRUD example with ASP.Net Core 8 Minimal Api and Angular 17.
 
 ## Features
