@@ -1,7 +1,16 @@
-<div class="modal" id="myModal" style="display: block;" *ngIf="(loader.isLoading$ | async)">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border: 0; margin-left: 110px;">
-        <img src="../../assets/img/spinner-main.gif" alt="loading..." style="width: 200px;height: 200px;">
+<div
+  class="modal fade show"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="
+    loader.showLoader ? { display: 'block' } : { display: 'none' }
+  "
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="../../../assets/img/spinner-main.gif" />
+      </div>
     </div>
+  </div>
 </div>
-</div>  

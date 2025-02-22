@@ -57,11 +57,13 @@ employeeEndpointGroup.MapGet("/{id}", async (
 });
 
 //Get all
-employeeEndpointGroup.MapGet("/", async (
+employeeEndpointGroup.MapGet("/", async (string searchText,
  ApplicationDbContext dbContext, HttpContext httpContext) =>
 {
-    var employees = await dbContext.Employees.ToListAsync();
-    return Results.Ok(employees);
+    if (string.IsNullOrEmpty(searchText))
+        return Results.Ok(await dbContext.Employees.ToListAsync());
+    else
+        return Results.Ok(await dbContext.Employees.Where(x => x.FullName.StartsWith(searchText)).ToListAsync());
 });
 
 //Create

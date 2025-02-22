@@ -3,11 +3,11 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { interceptor } from './interceptor';
+import { httpInterceptor } from './interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([interceptor])),
+    provideHttpClient(withInterceptors([httpInterceptor])),
   ],
 };

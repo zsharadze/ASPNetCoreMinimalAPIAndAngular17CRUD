@@ -15,6 +15,7 @@ import { EmployeeService } from '../services/employee.service';
   selector: 'app-addemployee',
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  providers: [EmployeeService],
   templateUrl: './addemployee.component.html',
   styleUrl: './addemployee.component.css',
 })
@@ -35,20 +36,23 @@ export class AddEmployeeComponent {
 
   constructor(
     private employeeService: EmployeeService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
-    let id = this.route.snapshot.queryParamMap.get('id');
-    if (id) {
-      //getemployee by id for edit
-      this.employeeService.getEmployee(Number(id)).subscribe((res) => {
-        this.employeeId = res.id;
-        this.employeeForm.controls.fullName.setValue(res.fullName);
-        this.employeeForm.controls.email.setValue(res.email);
-        this.employeeForm.controls.age.setValue(res.age);
-      });
-    }
+    const employeeId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (employeeId) this.getEmployee(Number(employeeId));
+  }
+
+  getEmployee(id: number) {
+    this.employeeId = id;
+    //getemployee by id for edit
+    this.employeeService.getEmployee(Number(id)).subscribe((res: any) => {
+      this.employeeId = this.employeeId;
+      this.employeeForm.controls.fullName.setValue(res.fullName);
+      this.employeeForm.controls.email.setValue(res.email);
+      this.employeeForm.controls.age.setValue(res.age);
+    });
   }
 
   onEmployeeSubmit() {

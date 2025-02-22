@@ -1,6 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
 import { EmployeeModel } from '../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { FormsModule } from '@angular/forms';
@@ -11,14 +17,15 @@ import { RouterModule, Router } from '@angular/router';
   selector: 'app-employees',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
+  providers: [EmployeeService],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css',
 })
 export class EmployeesComponent {
   employees: EmployeeModel[] = [];
-  public searchText!: string;
+  public searchText: string = '';
   public fullNameModelChanged: Subject<string> = new Subject<string>();
-  private fullNameModelChangeSubscription!: Subscription;
+  private unsubscribe$ = new Subject<string>();
 
   constructor(
     private employeeService: EmployeeService,
@@ -27,22 +34,29 @@ export class EmployeesComponent {
 
   ngOnInit() {
     this.getEmployess();
-    this.fullNameModelChangeSubscription = this.fullNameModelChanged
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((text) => {
-        this.searchText = text;
-        this.getEmployess();
+    this.fullNameModelChanged
+      .pipe(
+        debounceTime(400),
+        map((searchText) => {
+          this.searchText = searchText;
+          return this.searchText;
+        }),
+        distinctUntilChanged(),
+        switchMap((val) =>
+          this.employeeService
+            .getEmployees(this.searchText)
+            .pipe(takeUntil(this.unsubscribe$))
+        )
+      )
+      .subscribe((res: any) => {
+        this.employees = res;
       });
   }
 
   getEmployess() {
-    this.employeeService.getEmployees().subscribe((res) => {
-      this.employees = res;
-      if (this.searchText)
-        this.employees = res.filter((e: EmployeeModel) =>
-          e.fullName.includes(this.searchText)
-        );
-    });
+    this.employeeService
+      .getEmployees(this.searchText)
+      .subscribe((res: any) => (this.employees = res));
   }
 
   deleteEmployee(id: number) {
@@ -52,10 +66,12 @@ export class EmployeesComponent {
   }
 
   editEmployee(id: number) {
-    this.router.navigate(['/addemployee'], { queryParams: { id: id } });
+    this.router.navigate(['/addemployee', id]);
   }
 
-  ngOnDestroy() {
-    this.fullNameModelChangeSubscription.unsubscribe();
+  ngOnDestroy(): void {
+    this.unsubscribe$.next('unsubscribe emit');
+    this.unsubscribe$.complete();
+    this.fullNameModelChanged.unsubscribe();
   }
 }
